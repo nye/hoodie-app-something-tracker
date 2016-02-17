@@ -159,8 +159,9 @@ function addNote (note) {
 
   amountTd.textContent = note.amount
   noteTd.textContent = note.note
-  deleteTd.innerHTML = '<a href="#" class="js-delete-item">Delete</a>'
+  deleteTd.innerHTML = '<a href="#" id="delete-item">Delete</a>'
 
+  row.setAttribute('id', note.id)
   row.appendChild(amountTd)
   row.appendChild(noteTd)
   row.appendChild(deleteTd)
@@ -170,6 +171,10 @@ function addNote (note) {
 
 $deleteItem.addEventListener('click', function (event) {
   event.preventDefault()
+
+  if (event.target.id == 'delete-item') {
+    event.target.parentNode.parentNode.remove();  
+  }
 })
 
 function showSignedIn (username) {
