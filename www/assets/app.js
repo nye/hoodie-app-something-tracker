@@ -173,7 +173,12 @@ $deleteItem.addEventListener('click', function (event) {
   event.preventDefault()
 
   if (event.target.id == 'delete-item') {
-    event.target.parentNode.parentNode.remove();  
+    var id = event.target.parentNode.parentNode.id
+    event.target.parentNode.parentNode.remove();
+
+    hoodie.store.remove({
+      id: id
+    })
   }
 })
 
