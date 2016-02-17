@@ -12,6 +12,8 @@ var $trackerForm = document.querySelector('.js-tracker-input')
 var $trackerOutput = document.querySelector('.js-tracker-output')
 var $trackerClearButton = document.querySelector('.js-tracker-clear')
 
+var $deleteItem = document.querySelector('.js-delete-item')
+
 $passwordResetButton.addEventListener('click', function (event) {
   event.preventDefault()
 
@@ -153,15 +155,22 @@ function addNote (note) {
   var row = document.createElement('tr')
   var amountTd = document.createElement('td')
   var noteTd = document.createElement('td')
+  var deleteTd = document.createElement('td')
 
   amountTd.textContent = note.amount
   noteTd.textContent = note.note
+  deleteTd.innerHTML = '<a href="#" class="js-delete-item">Delete</a>'
 
   row.appendChild(amountTd)
   row.appendChild(noteTd)
+  row.appendChild(deleteTd)
 
   $trackerOutput.appendChild(row)
 }
+
+$deleteItem.addEventListener('click', function (event) {
+  event.preventDefault()
+})
 
 function showSignedIn (username) {
   document.querySelector('.js-username').textContent = username
