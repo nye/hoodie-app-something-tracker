@@ -15,15 +15,15 @@ var $trackerClearButton = document.querySelector('.js-tracker-clear')
 $passwordResetButton.addEventListener('click', function (event) {
   event.preventDefault()
 
-  var username = prompt('Username', $signinForm.querySelector('[name=username]').value)
+  var email = prompt('Email', $signinForm.querySelector('[name=email]').value)
 
-  if (!username) {
+  if (!email) {
     return
   }
 
   hoodie.account.request({
     type: 'passwordreset',
-    username: username
+    username: email
   })
 
   .then(function () {
@@ -40,11 +40,11 @@ $signinForm.addEventListener('submit', function (event) {
 
   $signinForm.classList.toggle('show')
 
-  var username = $signinForm.querySelector('[name=username]').value
+  var email = $signinForm.querySelector('[name=email]').value
   var password = $signinForm.querySelector('[name=password]').value
 
   hoodie.account.signIn({
-    username: username,
+    username: email,
     password: password
   })
 
@@ -68,17 +68,17 @@ $signupToggle.addEventListener('click', function (event) {
 $signupButton.addEventListener('click', function (event) {
   event.preventDefault()
 
-  var username = $signupForm.querySelector('[name=username]').value
+  var email = $signupForm.querySelector('[name=email]').value
   var password = $signupForm.querySelector('[name=password]').value
 
   hoodie.account.signUp({
-    username: username,
+    username: email,
     password: password
   })
 
   .then(function () {
     return hoodie.account.signIn({
-      username: username,
+      username: email,
       password: password
     })
   })
