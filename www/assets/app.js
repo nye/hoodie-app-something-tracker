@@ -161,7 +161,7 @@ function addNote (note) {
   noteTd.textContent = note.note
   deleteTd.innerHTML = '<a href="#" id="delete-item">Delete</a>'
 
-  row.setAttribute('id', note.id)
+  row.setAttribute('id', 'item-' + note.id)
   row.appendChild(amountTd)
   row.appendChild(noteTd)
   row.appendChild(deleteTd)
@@ -177,7 +177,7 @@ $deleteItem.addEventListener('click', function (event) {
     event.target.parentNode.parentNode.remove();
 
     hoodie.store.remove({
-      id: id
+      id: id.split('item-').pop()
     })
   }
 })
